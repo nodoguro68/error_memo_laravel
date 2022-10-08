@@ -15,31 +15,19 @@
             <div class="p-form__group">
                 <label for="email" class="p-form__label">メールアドレス</label>
                 <input id="email" type="email" class="p-form__input @error('email') p-form__input--error @enderror" name="email" value="{{ old('email') }}"  autocomplete="email">
-                @error('email')
-                    <span class="c-error-message" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
+                @include('components.form-error-msg', ['name' => 'email'])
             </div>
     
             <div class="p-form__group">
                 <label for="password" class="p-form__label p-form__label--password">パスワード</label><span class="p-form__note">※8文字以上英数字</span>
                 <input id="password" type="password" class="p-form__input @error('password') p-form__input--error @enderror" name="password"  autocomplete="new-password">
-                @error('password')
-                    <span class="c-error-message" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
+                @include('components.form-error-msg', ['name' => 'password'])
             </div>
     
             <div class="p-form__group">
                 <label for="password-confirm" class="p-form__label">パスワード（確認）</label>
                 <input id="password-confirm" type="password" class="p-form__input @error('password_confirmation') p-form__input--error @enderror" name="password_confirmation"  autocomplete="password-confirm">
-                @error('password_confirmation')
-                    <span class="c-error-message" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
+                @include('components.form-error-msg', ['name' => 'password_confirmation'])
             </div>
         </div>
 
