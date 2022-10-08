@@ -1,77 +1,60 @@
 @extends('layouts.app')
 
+@section('title', '新規会員登録')
+
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+<div class="l-content l-content--sm">
+    
+    <form method="POST" action="{{ route('register') }}" class="p-form">
+        @csrf
+        
+        <div class="p-form__head">
+            <h2 class="p-form__title">新規会員登録</h2>
+        </div>
+        <div class="p-form__body">
+            <div class="p-form__group">
+                <label for="email" class="p-form__label">メールアドレス</label>
+                <input id="email" type="email" class="p-form__input @error('email') p-form__input--error @enderror" name="email" value="{{ old('email') }}"  autocomplete="email">
+                @error('email')
+                    <span class="c-error-message" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+    
+            <div class="p-form__group">
+                <label for="password" class="p-form__label p-form__label--password">パスワード</label><span class="p-form__note">※8文字以上英数字</span>
+                <input id="password" type="password" class="p-form__input @error('password') p-form__input--error @enderror" name="password"  autocomplete="new-password">
+                @error('password')
+                    <span class="c-error-message" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+    
+            <div class="p-form__group">
+                <label for="password-confirm" class="p-form__label">パスワード（確認）</label>
+                <input id="password-confirm" type="password" class="p-form__input @error('password_confirmation') p-form__input--error @enderror" name="password_confirmation"  autocomplete="password-confirm">
+                @error('password_confirmation')
+                    <span class="c-error-message" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+        </div>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+        <div class="p-form__foot">
+            <p class="p-form__description">
+                新規登録すると、<a href="" class="p-form__link">利用規約</a>および <a href="" class="p-form__link">プライバシーポリシー</a>に同意したとみなされます。
+            </p>
+            <div class="p-form__group">
+                <div class="p-form__btn-container">
+                    <button type="submit" class="c-submit-btn">登録</button>
                 </div>
             </div>
         </div>
-    </div>
+
+
+    </form>
 </div>
 @endsection

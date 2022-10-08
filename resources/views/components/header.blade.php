@@ -9,7 +9,7 @@
                     <a href="" class="l-header__nav-link">ログイン</a>
                 </li>
                 <li class="l-header__nav-item">
-                    <a href="" class="l-header__nav-link">新規登録</a>
+                    <a href="{{ route('register') }}" class="l-header__nav-link">新規登録</a>
                 </li>
             </ul>
         </nav>
