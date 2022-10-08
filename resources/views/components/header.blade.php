@@ -6,7 +6,7 @@
         <nav class="l-header__nav">
             <ul class="l-header__nav-menu">
                 <li class="l-header__nav-item">
-                    <a href="" class="l-header__nav-link">ログイン</a>
+                    <a href="{{ route('login') }}" class="l-header__nav-link">ログイン</a>
                 </li>
                 <li class="l-header__nav-item">
                     <a href="{{ route('register') }}" class="l-header__nav-link">新規登録</a>
