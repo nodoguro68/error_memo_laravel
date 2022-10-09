@@ -20,3 +20,11 @@ Auth::routes();
 Route::group(['prefix' => 'mypage', 'namespace' => 'Mypage', 'as' => 'mypage.', 'middleware' => 'auth'], function () {
     Route::get('/', 'HomeController@index')->name('home');
 });
+
+Route::group(['as' => 'folder.', 'middleware' => 'auth'], function () {
+    Route::get('/folders', 'FolderController@index')->name('index');
+    Route::get('/folder/{id}', 'FolderController@show')->name('show');
+    Route::post('/folder/store', 'FolderController@store')->name('store');
+    Route::post('/folder/{id}/update', 'FolderController@update')->name('update');
+    Route::post('/folder/{id}/delete', 'FolderController@delete')->name('delete');
+});
