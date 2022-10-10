@@ -13,7 +13,9 @@ class MemoController extends Controller
 {
     public function index()
     {
-        
+        $memos = Memo::where(['is_published' => 1])->get();
+        // dd($memos);
+        return view('memos.index', compact('memos'));
     }
 
     public function show($id)

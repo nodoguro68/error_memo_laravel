@@ -42,4 +42,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Folder');
     }
+
+    public function memos()
+    {
+        return $this->hasMany('App\Models\Memo');
+    }
 }

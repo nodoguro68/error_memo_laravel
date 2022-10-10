@@ -40,4 +40,5 @@ Route::group(['prefix' => 'memo', 'as' => 'memo.'], function () {
     });
     Route::get('/index', 'MemoController@index')->name('index');
     Route::get('/{id}', 'MemoController@show')->name('show');
+    Route::get('/search', 'MemoController@search')->name('search');
 });

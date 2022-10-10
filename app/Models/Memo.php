@@ -19,6 +19,11 @@ class Memo extends Model
         'reference',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
+
     public function folder()
     {
         return $this->belongsTo('App\Models\Folder');
