@@ -14,4 +14,9 @@ class Folder extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
+
+    public function memos()
+    {
+        return $this->hasMany('App\Models\Memo');
+    }
 }

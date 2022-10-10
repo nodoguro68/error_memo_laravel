@@ -18,4 +18,9 @@ class Memo extends Model
         'cause',
         'reference',
     ];
+
+    public function folder()
+    {
+        return $this->belongsTo('App\Models\Folder');
+    }
 }

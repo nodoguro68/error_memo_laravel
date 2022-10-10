@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Folder;
 use App\Http\Requests\FolderRequest;
+use App\Models\Folder;
+use App\Models\Memo;
 use Illuminate\Support\Facades\Auth;
 
 class FolderController extends Controller
@@ -17,9 +18,11 @@ class FolderController extends Controller
 
     public function show($id)
     {
-        $folder = Folder::where(['id' => $id, 'user_id' => Auth::id()])->first();
-        // フォルダ内のメモ取得
-        return view('folders.show', compact('folder'));
+        $auth_id = Auth::id();
+        $folder = Folder::where(['id' => $id, 'user_id' => $auth_id])->first();
+        $memos = Memo::where(['user_id' => $auth_id, 'folder_id' => $id])->get();
+        // dd($memos);
+        return view('folders.show', compact('folder', 'memos'));
     }
 
     public function store(FolderRequest $request, Folder $folder)
