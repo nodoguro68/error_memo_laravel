@@ -16,9 +16,10 @@ class MemoController extends Controller
         
     }
 
-    public function show()
+    public function show($id)
     {
-        
+        $memo = Memo::where(['id' => $id, 'user_id' => Auth::id()])->first();
+        return view('memos.show', compact('memo'));
     }
 
     public function create()
