@@ -11,7 +11,8 @@ class FolderController extends Controller
 {
     public function index()
     {
-        return view('folders');
+        $folders = Auth::user()->folders()->get();
+        return view('folders.index', compact('folders'));
     }
 
     public function show()

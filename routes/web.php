@@ -21,10 +21,10 @@ Route::group(['prefix' => 'mypage', 'namespace' => 'Mypage', 'as' => 'mypage.', 
     Route::get('/', 'HomeController@index')->name('home');
 });
 
-Route::group(['as' => 'folder.', 'middleware' => 'auth'], function () {
-    Route::get('/folders', 'FolderController@index')->name('index');
-    Route::get('/folder/{id}', 'FolderController@show')->name('show');
-    Route::post('/folder/store', 'FolderController@store')->name('store');
-    Route::post('/folder/{id}/update', 'FolderController@update')->name('update');
-    Route::post('/folder/{id}/delete', 'FolderController@delete')->name('delete');
+Route::group(['prefix' => 'folder', 'as' => 'folder.', 'middleware' => 'auth'], function () {
+    Route::get('/index', 'FolderController@index')->name('index');
+    Route::get('/{id}', 'FolderController@show')->name('show');
+    Route::post('/store', 'FolderController@store')->name('store');
+    Route::post('/{id}/update', 'FolderController@update')->name('update');
+    Route::post('/{id}/delete', 'FolderController@delete')->name('delete');
 });

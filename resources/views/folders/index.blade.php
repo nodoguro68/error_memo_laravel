@@ -6,7 +6,13 @@
 <div class="l-content">
 
     <ul>
-        
+        @foreach ($folders as $folder)
+            <li>
+                <a href="">
+                    {{ $folder->name }}
+                </a>
+            </li>
+        @endforeach
     </ul>
     
     <form action="{{ route('folder.store') }}" method="post">
