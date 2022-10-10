@@ -8,7 +8,7 @@
     <ul>
         @foreach ($folders as $folder)
             <li>
-                <a href="">
+                <a href="{{ route('folder.show', $folder->id) }}">
                     {{ $folder->name }}
                 </a>
             </li>

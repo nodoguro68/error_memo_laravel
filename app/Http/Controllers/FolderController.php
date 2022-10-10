@@ -15,9 +15,11 @@ class FolderController extends Controller
         return view('folders.index', compact('folders'));
     }
 
-    public function show()
+    public function show($id)
     {
-        
+        $folder = Folder::where(['id' => $id, 'user_id' => Auth::id()])->first();
+        // フォルダ内のメモ取得
+        return view('folders.show', compact('folder'));
     }
 
     public function store(FolderRequest $request, Folder $folder)
