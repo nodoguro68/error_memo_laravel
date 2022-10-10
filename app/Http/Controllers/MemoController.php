@@ -21,6 +21,9 @@ class MemoController extends Controller
     public function show($id)
     {
         $memo = Memo::where(['id' => $id, 'user_id' => Auth::id()])->first();
+        if (!$memo) {
+            abort(404);
+        }
         return view('memos.show', compact('memo'));
     }
 
