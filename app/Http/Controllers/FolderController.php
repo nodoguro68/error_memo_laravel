@@ -30,7 +30,7 @@ class FolderController extends Controller
         $folder->name = $params['folder'];
         $folder->save();
 
-        return redirect('folders');
+        return redirect('folder/index');
     }
 
     public function update()
