@@ -4,8 +4,12 @@
 
 @section('content')
 <div class="l-content">
+    <a href="{{ route('folder.all') }}">すべてのメモ</a>
 
     <ul>
+        <li>
+            <a href="" class="">未分類</a>
+        </li>
         @foreach ($folders as $folder)
             <li>
                 <a href="{{ route('folder.show', $folder->id) }}">

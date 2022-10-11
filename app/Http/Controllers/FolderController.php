@@ -21,8 +21,14 @@ class FolderController extends Controller
         $auth_id = Auth::id();
         $folder = Folder::where(['id' => $id, 'user_id' => $auth_id])->first();
         $memos = Memo::where(['user_id' => $auth_id, 'folder_id' => $id])->get();
-        // dd($memos);
         return view('folders.show', compact('folder', 'memos'));
+    }
+
+    public function all()
+    {
+        $auth_id = Auth::id();
+        $memos = Memo::where(['user_id' => $auth_id])->get();
+        return view('folders.all', compact('memos'));
     }
 
     public function store(FolderRequest $request, Folder $folder)
