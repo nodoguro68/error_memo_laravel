@@ -20,11 +20,16 @@ class MemoController extends Controller
 
     public function show($id)
     {
+        $folders = Auth::user()->folders()->with('memos')->get();
+        $memos = Auth::user()->memos()->latest()->get();
+        $unsolved_memos = Auth::user()->memos()->where(['is_solved' => 0])->latest()->get();
+        $solved_memos = Auth::user()->memos()->where(['is_solved' => 1])->latest()->get();
+        $publish_memos = Auth::user()->memos()->where(['is_published' => 1])->latest()->get();
         $memo = Memo::where(['id' => $id, 'user_id' => Auth::id()])->first();
         if (!$memo) {
             abort(404);
         }
-        return view('memos.show', compact('memo'));
+        return view('memos.show', compact('folders', 'memos', 'unsolved_memos', 'solved_memos', 'publish_memos', 'memo'));
     }
 
     public function create()

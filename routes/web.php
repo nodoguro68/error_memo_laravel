@@ -22,9 +22,7 @@ Route::group(['prefix' => 'mypage', 'namespace' => 'Mypage', 'as' => 'mypage.', 
 });
 
 Route::group(['prefix' => 'folder', 'as' => 'folder.', 'middleware' => 'auth'], function () {
-    Route::get('/index', 'FolderController@index')->name('index');
-    Route::get('/all', 'FolderController@all')->name('all');
-    Route::get('/{id}', 'FolderController@show')->name('show');
+    Route::get('/', 'FolderController@index')->name('index');
     Route::post('/store', 'FolderController@store')->name('store');
     Route::post('/{id}/update', 'FolderController@update')->name('update');
     Route::post('/{id}/delete', 'FolderController@delete')->name('delete');

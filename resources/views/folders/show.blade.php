@@ -12,6 +12,5 @@
             </li>
         @endforeach
     </ul>
-    <a href="{{ route('memo.create') }}">新規メモ</a>
 </div>
 @endsection
