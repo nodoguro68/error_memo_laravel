@@ -44,14 +44,34 @@ class MemoController extends Controller
         return redirect('folder/'.$params['folder_id']);
     }
 
-    public function edit()
+    public function edit($id)
     {
-        
+        $auth_id = Auth::id();
+        $categories = Category::all();
+        $folders = Auth::user()->folders()->get();
+        $memo = Memo::where(['id' => $id, 'user_id' => $auth_id])->first();
+        if (!$memo) {
+            abort(404);
+        }
+        if ($memo->user_id !== $auth_id){
+            abort(403);
+        }
+        return view('memos.edit', compact('categories', 'folders', 'memo'));
     }
-
-    public function update()
+    
+    public function update($id, MemoRequest $request, Memo $memo)
     {
-        
+        $auth_id = Auth::id();
+        $params = $request->only(['category_id', 'folder_id', 'is_solved', 'is_published', 'title', 'content', 'attempt', 'solution', 'cause', 'reference']);
+        $memo = Memo::where(['id' => $id, 'user_id' => $auth_id])->first();
+        if (!$memo) {
+            abort(404);
+        }
+        if ($memo->user_id !== $auth_id) {
+            abort(403);
+        }
+        $memo->fill($params)->save();
+        return redirect('folder/' . $params['folder_id']);
     }
 
     public function delete()

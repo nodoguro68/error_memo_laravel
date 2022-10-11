@@ -6,7 +6,7 @@
 <div class="l-content">
     <div class="memo">
         <div class="memo__head">
-            <a href="{{ route('folder.show', $memo->folder_id) }}">フォルダに戻る</a>
+            <a href="{{ $memo->folder_id == null ? route('folder.all') : route('folder.show', $memo->folder_id) }}">フォルダに戻る</a>
             <div class="memo__badge">
                 {{ $memo->is_solved }}
             </div>

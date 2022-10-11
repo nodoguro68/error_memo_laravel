@@ -49,4 +49,14 @@ class Memo extends Model
             return '公開';
         }
     }
+
+    public function getPlainIsSolved()
+    {
+        return $this->attributes['is_solved'];
+    }
+
+    public function getPlainIsPublished()
+    {
+        return $this->attributes['is_published'];
+    }
 }
