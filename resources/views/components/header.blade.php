@@ -15,7 +15,10 @@
                 @endguest
                 @auth
                     <li class="l-header__nav-item">
-                        <a href="" class="l-header__nav-link">ログアウト</a>
+                        <button type="submit" form="logout" class="">ログアウト</button>
+                        <form id="logout" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
                     </li>
                 @endauth
             </ul>
