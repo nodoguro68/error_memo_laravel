@@ -14,6 +14,7 @@ class CategoriesTableSeeder extends Seeder
     public function run()
     {
         $params = [
+            ['name' => '未分類'],
             ['name' => 'HTML'],
             ['name' => 'CSS'],
             ['name' => 'Sass'],
