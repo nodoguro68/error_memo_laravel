@@ -56,7 +56,10 @@
                 {{-- 投稿ユーザー情報 --}}
                 @auth
                     <a href="{{ route('memo.edit', $memo->id) }}">編集</a>
-                    <button type="button">削除</button>
+                    <form action="{{ route('memo.delete', $memo->id) }}" method="post">
+                        @csrf
+                        <button type="submit">削除</button>
+                    </form>
                 @endauth
             </div>
         </div>

@@ -46,7 +46,7 @@ class MemoController extends Controller
         $memo->user_id = Auth::id();
         $memo->fill($params)->save();
 
-        return redirect('folder/'.$params['folder_id']);
+        return redirect('folder');
     }
 
     public function edit($id)
@@ -76,12 +76,21 @@ class MemoController extends Controller
             abort(403);
         }
         $memo->fill($params)->save();
-        return redirect('folder/' . $params['folder_id']);
+        return redirect('folder');
     }
 
-    public function delete()
+    public function delete($id)
     {
-        
+        $auth_id = Auth::id();
+        $memo = Memo::find($id);
+        if (!$memo) {
+            abort(404);
+        }
+        if ($memo->user_id !== $auth_id) {
+            abort(403);
+        }
+        $memo->delete();
+        return redirect('folder');
     }
 
     public function search()
