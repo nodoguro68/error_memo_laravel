@@ -50,6 +50,10 @@
                         </li>
                     @endforeach
                 </ul>
+                <form action="{{ route('folder.delete', $folder->id) }}" method="post">
+                    @csrf
+                    <button type="submit">削除</button>
+                </form>
             </li>
         @endforeach
     </ul>
