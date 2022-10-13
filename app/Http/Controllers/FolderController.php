@@ -12,13 +12,12 @@ class FolderController extends Controller
 {
     public function store(FolderRequest $request, Folder $folder)
     {
-        $params = $request->only(['folder']);
-
+        $params = $request->only(['name']);
         $folder->user_id = Auth::id();
-        $folder->name = $params['folder'];
+        $folder->name = $params['name'];
         $folder->save();
 
-        return redirect('mypage');
+        return redirect('mypage');   
     }
 
     public function update()

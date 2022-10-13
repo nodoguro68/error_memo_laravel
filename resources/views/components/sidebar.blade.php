@@ -61,8 +61,8 @@
     <form action="{{ route('folder.store') }}" method="post">
         @csrf
 
-        <input type="text" class="@error('email') p-form__input--error @enderror" name="folder" value="{{ old('folder') }}" placeholder="フォルダ" >
-        @include('components.form-error-msg', ['name' => 'folder'])
+        <input type="text" class="@error('email') p-form__input--error @enderror" name="name" value="{{ old('folder') }}" placeholder="フォルダ" >
+        @include('components.form-error-msg', ['name' => 'name'])
 
         <button type="submit" class="c-submit-btn">追加</button>
     </form>

@@ -24,7 +24,21 @@ class FolderRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ''
+            'name' => 'required|string|max:255|unique:folders'
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'name' => 'フォルダ名'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'required' => '空白のみで入力できません'
         ];
     }
 }
