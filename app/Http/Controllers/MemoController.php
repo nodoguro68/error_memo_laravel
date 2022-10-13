@@ -46,7 +46,7 @@ class MemoController extends Controller
         $memo->user_id = Auth::id();
         $memo->fill($params)->save();
 
-        return redirect('folder');
+        return redirect('mypage');
     }
 
     public function edit($id)
@@ -76,7 +76,7 @@ class MemoController extends Controller
             abort(403);
         }
         $memo->fill($params)->save();
-        return redirect('folder');
+        return redirect('mypage');
     }
 
     public function delete($id)
@@ -90,7 +90,7 @@ class MemoController extends Controller
             abort(403);
         }
         $memo->delete();
-        return redirect('folder');
+        return redirect('mypage');
     }
 
     public function search()

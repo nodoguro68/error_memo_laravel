@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('top');
 });
 
+Route::get('/user/{id}', 'UserController@show')->name('user.show');
+
 Auth::routes();
 
 Route::group(['prefix' => 'mypage', 'namespace' => 'Mypage', 'as' => 'mypage.', 'middleware' => 'auth'], function () {

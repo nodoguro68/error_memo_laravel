@@ -47,4 +47,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Memo');
     }
+
+    public function publish_memos()
+    {
+        return $this->memos()->where(['is_published' => 1])->get();
+    }
 }

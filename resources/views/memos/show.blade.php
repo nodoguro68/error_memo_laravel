@@ -62,6 +62,16 @@
                     </form>
                 @endauth
             </div>
+            <div class="user-info">
+                <div class="">
+                    <a href="{{ route('user.show', $memo->user_id) }}" class="">
+                        <img src="" alt="アバター" class="">
+                    </a>
+                </div>
+                <div class="">
+                    {{ $memo->user->name }}
+                </div>
+            </div>
         </div>
     </div>
 </div>
