@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\MemoRequest;
+use App\Http\Requests\SearchRequest;
 use App\Models\Memo;
 use App\Models\Category;
 use App\Models\Folder;
@@ -13,8 +14,7 @@ class MemoController extends Controller
 {
     public function index()
     {
-        $memos = Memo::where(['is_published' => 1])->get();
-        // dd($memos);
+        $memos = Memo::where(['is_published' => 1])->latest()->paginate(2);
         return view('memos.index', compact('memos'));
     }
 
@@ -93,9 +93,12 @@ class MemoController extends Controller
         return redirect('mypage');
     }
 
-    public function search()
+    public function search(SearchRequest $request)
     {
-        
+        $params = $request->only(['keyword']);
+        $keyword = $params['keyword'];
+        $memos = Memo::where('title', 'like', "%$keyword%")->where('is_published', 1)->latest()->paginate(10);
+        return view('memos.index', compact('memos'));
     }
 
     public function like()

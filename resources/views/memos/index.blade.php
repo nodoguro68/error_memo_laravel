@@ -5,7 +5,7 @@
 @section('content')
 <div class="l-content">
     <form action="{{ route('memo.search') }}" method="get">
-        <input type="text" name="keyword">
+        <input type="text" name="keyword" placeholder="キーワード">
         <button type="submit">検索</button>
     </form>
 
@@ -16,7 +16,9 @@
                     <a href="{{ route('memo.show', $memo->id) }}" class="memo-list__link">
                         {{ $memo->title }}
                     </a>
-                    {{ $memo->user->name }}
+                    <div>
+                        {{ $memo->user->name }}
+                    </div>
                 </li>
             @endforeach
         @else
@@ -25,5 +27,7 @@
             </div>
         @endif
     </ul>
+
+    {{ $memos->links('vendor.pagination.default') }}
 </div>
 @endsection
