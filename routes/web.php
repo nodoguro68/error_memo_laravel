@@ -19,10 +19,17 @@ Auth::routes();
 
 Route::group(['prefix' => 'mypage', 'namespace' => 'Mypage', 'as' => 'mypage.', 'middleware' => 'auth'], function () {
     Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/profile', 'ProfileController@showProfileForm')->name('profile.show');
+    Route::post('/profile', 'ProfileController@update')->name('profile.update');
+    Route::get('/email', 'EditEmailController@showEditEmailForm')->name('email.show');
+    Route::post('/email', 'EditEmailController@sendEmail')->name('email.send');
+    Route::get('/password', 'EditPasswordController@showPasswordForm')->name('password.show');
+    Route::post('/password', 'EditPasswordController@update')->name('password.update');
+    Route::get('/signout', 'SignoutController@showSignoutForm')->name('signout.show');
+    Route::post('/signout', 'SignoutController@signout')->name('signout');
 });
 
 Route::group(['prefix' => 'folder', 'as' => 'folder.', 'middleware' => 'auth'], function () {
-    Route::get('/', 'FolderController@index')->name('index');
     Route::post('/store', 'FolderController@store')->name('store');
     Route::post('/{id}/update', 'FolderController@update')->name('update');
     Route::post('/{id}/delete', 'FolderController@delete')->name('delete');
