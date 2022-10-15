@@ -24,7 +24,8 @@ Route::group(['prefix' => 'mypage', 'namespace' => 'Mypage', 'as' => 'mypage.', 
     Route::get('/profile', 'ProfileController@showProfileForm')->name('profile.show');
     Route::post('/profile', 'ProfileController@update')->name('profile.update');
     Route::get('/email', 'EditEmailController@showEditEmailForm')->name('email.show');
-    Route::post('/email', 'EditEmailController@sendEmail')->name('email.send');
+    Route::post('/email', 'EditEmailController@send')->name('email.send');
+    Route::get('/email/reset/{token}', 'EditEmailController@reset')->name('email.reset');
     Route::get('/password', 'EditPasswordController@showPasswordForm')->name('password.show');
     Route::post('/password', 'EditPasswordController@update')->name('password.update');
     Route::get('/signout', 'SignoutController@showSignoutForm')->name('signout.show');
